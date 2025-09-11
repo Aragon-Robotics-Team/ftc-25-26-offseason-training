@@ -45,6 +45,7 @@ public class Claire extends OpMode {
     private ElapsedTime runtime = new ElapsedTime();
     private Servo claw0;
     private Intake intake = new Intake();
+    Drive drive = new Drive();
 
     /**
      * This method will be called once, when the INIT button is pressed.
@@ -53,6 +54,7 @@ public class Claire extends OpMode {
     public void init() {
         claw0 = hardwareMap.get(Servo.class, "claw");
         intake.Init(hardwareMap);
+        drive.init(hardwareMap);
 
         telemetry.addData("Status", "Initialized");
     }
@@ -88,6 +90,7 @@ public class Claire extends OpMode {
         }
 
         intake.Loop(gamepad1);
+        drive.loop(gamepad1);
         telemetry.addData("Status", "Run Time: " + runtime.toString());
     }
 
