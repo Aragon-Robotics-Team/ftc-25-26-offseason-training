@@ -43,6 +43,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 public class Brayden extends OpMode {
     //BraydenConstants constants = new BraydenConstants();
     Drive drive = new Drive();
+    private Intake intake = new Intake();
     private Servo claw0;
     private ElapsedTime runtime = new ElapsedTime();
 
@@ -53,6 +54,7 @@ public class Brayden extends OpMode {
     public void init() {
         claw0 = hardwareMap.get(Servo.class, "claw");
         drive.init(hardwareMap);
+        intake.Init(hardwareMap);
         telemetry.addData("Status", "Initialized");
     }
 
@@ -86,6 +88,7 @@ public class Brayden extends OpMode {
         }
         telemetry.addData("Status", "Run Time: " + runtime.toString());
         drive.loop(gamepad1);
+        intake.Loop(gamepad1);
     }
 
     /**
